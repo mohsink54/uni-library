@@ -14,10 +14,10 @@ const config = {
             qstashUrl: process.env.QSTASH_URL!,
             qstashToken: process.env.QSTASH_TOKEN!,
         },
-        sendemail:{
-            emailService: process.env.EMAIL_SERVICE!,
-            emailTemplate: process.env.EMAIL_TEMPLATE!,
-            emailPublic: process.env.EMAIL_PUBLIC_KEY!,
+        sendEmail:{
+            password: process.env.EMAIL_PASSWORD!,
+            host: process.env.EMAIL_HOST!,
+            user: process.env.EMAIL_USER!,
         }
     },
 };
