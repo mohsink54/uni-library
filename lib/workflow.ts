@@ -58,6 +58,7 @@ export const handleEmailWorkflow = async ({
   message: string;
 }) => {
   try {
+    console.log("Attempting to send email:", { email, subject, message });
     await transporter.sendMail({
       from: `BookWorms <${config.env.sendEmail.user}>`, // Sender's address
       to: email, // Receiver's email
