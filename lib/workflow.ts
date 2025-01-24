@@ -36,7 +36,7 @@ export const sendEmail = async ({
   try {
     // Use QStash to trigger the workflow
     await qstashClient.publishJSON({
-      url: `${config.env.apiEndpoint}/api/workflows/send-email`,
+      url: `${config.env.prodApiEndpoint}/api/workflows/onboarding`,
       body: { email, subject, message },
     });
 
