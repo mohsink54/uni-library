@@ -14,9 +14,9 @@ const qstashClient = new QStashClient({
 });
 
 export const sendEmail = async ({
-    email,
-    subject,
-    message,
+  email,
+  subject,
+  message,
   }: {
     email: string;
     subject: string;
@@ -34,8 +34,7 @@ export const sendEmail = async ({
         to_email: email,
         subject,
         message,
-        from_name: "JS Mastery", // Sender's name
-        from_email: "contact@adrianjsmastery.com", // Sender's email
+        from_name: "BookWorms",
       };
   
       // Send email using EmailJS
