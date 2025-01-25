@@ -13,14 +13,13 @@ const qstashClient = new QStashClient({
   token: config.env.upstash.qstashToken,
 });
 
-// Nodemailer configuration
 const transporter = nodemailer.createTransport({
-  host: config.env.sendEmail.host, // e.g., smtp.gmail.com
-  port: 587, // or 465 for secure connections
-  secure: false, // true for port 465
+  host: config.env.sendEmail.host,
+  port: 587,
+  secure: false,
   auth: {
-    user: config.env.sendEmail.user, // Email username
-    pass: config.env.sendEmail.password, // Email password or app-specific password
+    user: config.env.sendEmail.user,
+    pass: config.env.sendEmail.password,
   },
 });
 
@@ -34,7 +33,6 @@ export const sendEmail = async ({
   message: string;
 }) => {
   try {
-    // Use QStash to trigger the workflow
     await qstashClient.publishJSON({
       url: `${config.env.prodApiEndpoint}/api/workflows/send-email`,
       body: { email, subject, message },
@@ -61,9 +59,9 @@ export const handleEmailWorkflow = async ({
     console.log("Attempting to send email:", { email, subject, message });
     await transporter.sendMail({
       from: `BookWorms <${config.env.sendEmail.user}>`, // Sender's address
-      to: email, // Receiver's email
-      subject, // Subject line
-      html: message, // HTML body
+      to: email, 
+      subject, 
+      html: message, 
     });
 
     console.log(`Email sent successfully to ${email}`);

@@ -7,8 +7,8 @@ const BookOverview = ({
   author, 
   genre,
   rating,
-  total_copies, 
-  available_copies,
+  totalCopies, 
+  availableCopies,
   description, 
   coverColor,
   coverUrl,
@@ -32,10 +32,10 @@ const BookOverview = ({
             </div>
             <div className='book-copies'>
               <p>
-                Total Books <span>{total_copies}</span>
+                Total Books <span>{totalCopies}</span>
               </p>
               <p>
-                Available <span>{available_copies}</span>
+                Available <span>{availableCopies}</span>
               </p>
             </div>
             <p className='book-description'>{description}</p>
@@ -51,7 +51,11 @@ const BookOverview = ({
             coverImage={coverUrl}
             />
             <div className="absolute left-16 top-10 rotate-12 opacity-40 max-sm:hidden">
-              BookCover
+            <BookCover 
+            variant='wide'
+            coverColor={coverColor}
+            coverImage={coverUrl}
+            />
             </div>
           </div>
         </div>
