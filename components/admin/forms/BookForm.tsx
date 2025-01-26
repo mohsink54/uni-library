@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import ColorPicker from "../ColorPicker";
+import { CreateBook } from "@/lib/actions/admin/actions/book";
 
 interface Props extends Partial<Book>{
     type?: "create" | "update";
@@ -37,23 +38,23 @@ const BookForm = () => {
     });
 
     const onSubmit = async(values: z.infer<typeof bookSchema>) =>{
-        // const result = await createBook(values);
+        const result = await CreateBook(values);
 
-        // if (result.success) {
-        //     toast({
-        //         title: "Success",
-        //         description: "Book Created Successfully",
-        //     });
+        if (result.success) {
+            toast({
+                title: "Success",
+                description: "Book Created Successfully",
+            });
 
-        //     router.push(`/admin/books/${result.data.id}`);
-        // }
-        // else{
-        //     toast({
-        //         title: "Error",
-        //         description: result.message,
-        //         variant: "destructive",
-        //     });
-        // }
+            router.push(`/admin/books/${result.data.id}`);
+        }
+        else{
+            toast({
+                title: "Error",
+                description: result.message,
+                variant: "destructive",
+            });
+        }
     };
   return (
     <Form {...form}>
@@ -74,6 +75,7 @@ const BookForm = () => {
                                 className="book-form_input"
                             />
                         </FormControl>
+                        <FormMessage/>
                     </FormItem>
                 )}
             />
@@ -93,6 +95,7 @@ const BookForm = () => {
                                 className="book-form_input"
                             />
                         </FormControl>
+                        <FormMessage/>
                     </FormItem>
                 )}
             />
@@ -112,6 +115,7 @@ const BookForm = () => {
                                 className="book-form_input"
                             />
                         </FormControl>
+                        <FormMessage/>
                     </FormItem>
                 )}
             />
@@ -134,6 +138,7 @@ const BookForm = () => {
                                 className="book-form_input"
                             />
                         </FormControl>
+                        <FormMessage/>
                     </FormItem>
                 )}
             />
@@ -155,6 +160,7 @@ const BookForm = () => {
                                 className="book-form_input"
                             />
                         </FormControl>
+                        <FormMessage/>
                     </FormItem>
                 )}
             />
@@ -177,6 +183,7 @@ const BookForm = () => {
                                 value={field.value}
                             />
                         </FormControl>
+                        <FormMessage/>
                     </FormItem>
                 )}
             />
@@ -194,6 +201,7 @@ const BookForm = () => {
                                 value={field.value}
                             />
                         </FormControl>
+                        <FormMessage/>
                     </FormItem>
                 )}
             />
