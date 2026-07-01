@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   parameter-store:
-    # Format -> YOUR_LOCAL_ENV_NAME: "THE_AWS_PARAMETER_NAME"
+    # Format -> YOUR_LOCAL_ENV_NAME: "THE_AWS_PARAM_NAME"
     DATABASE_URL: "/unilibrary/prod/DATABASE_URL"
     NEXT_PUBLIC_API_URL: "/unilibrary/prod/NEXT_PUBLIC_API_URL"
 
