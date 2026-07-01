@@ -24,7 +24,7 @@ const bebasNeue = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "BookWorm",
+  title: "BookWorms",
   description: "BookWorms is a book borrowing library Solution",
 };
 
