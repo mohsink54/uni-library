@@ -14,10 +14,6 @@ import { z } from "zod";
 import ColorPicker from "../ColorPicker";
 import { CreateBook } from "@/lib/actions/admin/actions/book";
 
-interface Props extends Partial<Book>{
-    type?: "create" | "update";
-}
-
 const BookForm = () => {
     const router = useRouter();
 

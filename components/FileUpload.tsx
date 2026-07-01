@@ -2,8 +2,6 @@
 import { toast } from "@/hooks/use-toast";
 import config from "@/lib/config";
 import { cn } from "@/lib/utils";
-import { error } from "console";
-import ImageKit from "imagekit";
 import { IKImage, ImageKitProvider, IKUpload, IKVideo, } from "imagekitio-next";
 import Image from "next/image";
 import { useRef, useState } from "react";
@@ -31,8 +29,9 @@ const authenticator = async()=>{
         const {signature, expire, token} = data;
         return{ token, expire, signature};
         
-    } catch (error: any) {
-        throw new Error(`Authencation request Failed ${error.message}`);
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : "Unknown error";
+        throw new Error(`Authencation request Failed ${message}`);
     }
 }
 
@@ -56,8 +55,8 @@ const FileUpload = ({
     value,
 }:Props) => {
 
-    const IKUploadRef = useRef(null);
-    const [file, setFile] = useState<{ filePath: string} | null>(value ? { filePath: value } : null);
+    const IKUploadRef = useRef<{ click: () => void } | null>(null);
+    const [file, setFile] = useState<{ filePath: string } | null>(value ? { filePath: value } : null);
     const [progress, setProgress] = useState(0);
 
     const styles = {
@@ -69,7 +68,7 @@ const FileUpload = ({
         text: variant === "dark" ? "text-light-400" : "text-dark-400",
     };
 
-    const onError = (error:any)=>{
+    const onError = (error: unknown)=>{
         console.log(error);
 
         toast({
@@ -78,7 +77,7 @@ const FileUpload = ({
             variant: "destructive"
         })
     };
-    const onSuccess = (res: any)=>{
+    const onSuccess = (res: { filePath: string })=>{
         setFile(res);
         onFileChange(res.filePath);
 
@@ -143,8 +142,7 @@ const FileUpload = ({
                 e.preventDefault();
 
                 if(IKUploadRef.current){
-                    // @ts-ignore
-                    IKUploadRef.current?.click();
+                    IKUploadRef.current.click();
                 }
             }}
         >

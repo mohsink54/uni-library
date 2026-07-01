@@ -1,7 +1,6 @@
 "use client"
 import { adminSideBarLinks } from '@/constants'
 import { cn, getInitials } from '@/lib/utils'
-import { Key } from 'lucide-react'
 import { Session } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'

@@ -54,7 +54,7 @@ const BorrowBook = ({
                     variant: "destructive",
                 });
             }
-        } catch (error) {
+        } catch {
             toast({
                 title: "Error",
                 description: "An Error occured while borrowing the book",

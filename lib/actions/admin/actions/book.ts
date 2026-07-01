@@ -17,7 +17,7 @@ export const CreateBook = async(params: BookParams)=>{
             success: true,
             data: JSON.parse(JSON.stringify(newBook[0])),
         };
-    } catch (error) {
+    } catch {
         return{
             success: false,
             message: "An error occured while creating the book",

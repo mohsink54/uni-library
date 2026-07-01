@@ -16,6 +16,18 @@ const eslintConfig = [
     "plugin:tailwindcss/recommended",
     "prettier"
   ),
+  {
+    settings: {
+      tailwindcss: {
+        config: "./tailwind.config.ts",
+        callees: ["cn"],
+      },
+    },
+    rules: {
+      "tailwindcss/no-custom-classname": "off",
+      "tailwindcss/classnames-order": "off",
+    },
+  },
 ];
 
 export default eslintConfig;
