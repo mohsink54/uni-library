@@ -1,0 +1,28 @@
+version: 0.2
+
+env:
+  parameter-store:
+    # Format -> YOUR_LOCAL_ENV_NAME: "THE_AWS_PARAMETER_NAME"
+    DATABASE_URL: "/unilibrary/prod/DATABASE_URL"
+    NEXT_PUBLIC_API_URL: "/unilibrary/prod/NEXT_PUBLIC_API_URL"
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo "Installing source NPM dependencies..."
+      - npm install
+  pre_build:
+    commands:
+      - echo "Running linter to ensure code quality..."
+      - npm run lint
+  build:
+    commands:
+      - echo "Compiling the Next.js application..."
+      - npm run build
+      
+artifacts:
+  files:
+    - '**/*'
+  name: uni-library-build
