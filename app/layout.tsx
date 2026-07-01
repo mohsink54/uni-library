@@ -24,8 +24,8 @@ const bebasNeue = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "BookWorms",
-  description: "BookWorks is a book borrowing library Solution",
+  title: "BookWorm",
+  description: "BookWorms is a book borrowing library Solution",
 };
 
 const RootLayout = async({
