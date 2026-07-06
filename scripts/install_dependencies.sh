@@ -1,19 +1,17 @@
 #!/bin/bash
-set -e  # fail fast
+set -e
 
 cd /home/ec2-user/uni-library
-
-# Fix ownership so ec2-user can write files
 sudo chown -R ec2-user:ec2-user .
 
-# Remove node_modules and package-lock.json if they were created by root
-rm -rf node_modules package-lock.json
+# Clean up old lockfile if root-owned
+rm -f package-lock.json
 
-# Install dependencies cleanly
-npm install --unsafe-perm
+# Install dependencies with legacy peer deps to avoid conflicts
+npm install --legacy-peer-deps
 
-# Ensure dotenv is installed
+# Ensure dotenv is present
 npm install dotenv --save
 
-# Run migrations (requires .env with DATABASE_URL)
+# Run migrations
 npx drizzle-kit migrate
