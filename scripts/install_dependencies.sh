@@ -7,7 +7,6 @@ sudo chown -R ec2-user:ec2-user .
 # Clean up old lockfile if root-owned
 rm -f package-lock.json
 
-# Install dependencies with legacy peer deps to avoid conflicts
 npm install --legacy-peer-deps
 
 # Ensure dotenv is present
