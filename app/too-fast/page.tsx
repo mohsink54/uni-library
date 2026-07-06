@@ -4,7 +4,7 @@ const page = () => {
   return (
     <main className='root-container flex min-h-screen flex-col items-center justify-center'>
         <h1 className='font-bebas-neue text-5xl font-bold text-light-100'>
-            Slow Down There, You Speedy!!
+            Slow Down There, You Speedy!! take a moment to breathe and relax
         </h1>
         <p className='mt-3 max-w-xl text-center text-light-400'>
             Looks like you&apos;ve been a little too eager. We&apos;ve put a temporary pause on your excitement. Chill for a bit, and try again shortly
