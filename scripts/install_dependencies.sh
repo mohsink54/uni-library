@@ -1,20 +1,19 @@
 #!/bin/bash
-# Load the environment (NVM often needs this)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# If you installed Node via NVM, this line ensures it is found
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+set -e  # fail fast
 
 cd /home/ec2-user/uni-library
 
-# Now run npm with a explicit check
-if ! command -v npm &> /dev/null; then
-    echo "npm could not be found, attempting to locate..."
-    # If NVM isn't the issue, try the full path if you know it, e.g.:
-    # /usr/local/bin/npm install
-    exit 1
-fi
+# Fix ownership so ec2-user can write files
+sudo chown -R ec2-user:ec2-user .
 
-npm install
-npm run db:migrate
+# Remove node_modules and package-lock.json if they were created by root
+rm -rf node_modules package-lock.json
+
+# Install dependencies cleanly
+npm install --unsafe-perm
+
+# Ensure dotenv is installed
+npm install dotenv --save
+
+# Run migrations (requires .env with DATABASE_URL)
+npx drizzle-kit migrate
