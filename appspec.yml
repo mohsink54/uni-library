@@ -5,6 +5,7 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user/uni-library
+    file_exists_behavior: OVERWRITE
     overwrite: true # CRITICAL: Prevents deployment crashes if files already exist
 
 # 2. What scripts should CodeDeploy run, and in what order?
