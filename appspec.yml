@@ -1,0 +1,25 @@
+version: 0.0
+os: linux
+
+# 1. Where should CodeDeploy put the files on your Amazon Linux EC2 server?
+files:
+  - source: /
+    destination: /home/ec2-user/uni-library
+    overwrite: true # CRITICAL: Prevents deployment crashes if files already exist
+
+# 2. What scripts should CodeDeploy run, and in what order?
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 120
+      runas: ec2-user
+
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 120
+      runas: ec2-user
